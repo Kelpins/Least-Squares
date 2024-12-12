@@ -45,6 +45,7 @@ def leastSquares():
     yVals = dataFromFile[:, 1]
 
     degree = int(input("What degree will the polynomial be? "))
+    print()
 
     systemMatrix = generateSystemMatrix(degree, xVals)
     inverseSystemMatrix = inverseMatrix(systemMatrix)
@@ -52,7 +53,17 @@ def leastSquares():
 
     coefficients = multiplyMatrices(inverseSystemMatrix, answerMatrix)
 
-    print(coefficients)
+    equation = ""
+
+    for i in range(len(coefficients)):
+        coefficient = round(coefficients[i][0], 7)
+        print(chr(97 + i) + ": " + str(coefficient))
+        if i != degree:
+            equation += "(" + str(coefficient) + ")x^" + str(degree - i) + " + "
+        else:
+            equation += "(" + str(coefficient) + ")"
+
+    print("\n" + equation + "\n")
 
 
 leastSquares()
