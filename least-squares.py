@@ -1,6 +1,6 @@
 """
 Least Squares Polynomial Approximation Generator
-Authors: Kellan W, Kira M, Natalie B
+Authors: Natalie B, Kira M, Kellan W
 
 Relevant information:
 This program takes in a dataset of (x,y) coordinate pairs, then uses matrices to produce a polynomial of best fit.
