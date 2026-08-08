@@ -24,6 +24,19 @@ technically infinite curves that will pass through every single datapoint perfec
 import numpy as np
 
 
+def addVals(coefficients, xVals, yVals, degree):
+    count = 0
+
+    for i in range(len(xVals)):
+        iter = 0
+        for j in range(degree + 1):
+            iter += coefficients[j] * xVals[i] ** (degree - j)
+        iter -= yVals[i]
+        count += iter**2
+
+    print(count)
+
+
 # Defines a function for multiplying matrices for better readability later
 def multiplyMatrices(matrix1, matrix2):
     return np.matmul(matrix1, matrix2)
@@ -77,7 +90,7 @@ def generateAnswerMatrix(degree, xVals, yVals):
 # Main program function
 def leastSquares():
     # Load data from txt file
-    fname = "[INSERT_NAME_OF_FILE_IN_SAME_DIRECTORY].txt"
+    fname = "TestCase1.txt"
     dataFromFile = np.loadtxt(fname, dtype="float", delimiter="\t")
 
     # Define a numpy array for every X value in our dataset
@@ -96,6 +109,8 @@ def leastSquares():
 
     # Generate polynomial coefficients
     coefficients = multiplyMatrices(inverseSystemMatrix, answerMatrix)
+
+    addVals(coefficients, xVals, yVals, degree)
 
     # Print out the coefficients & the equation
     equation = ""
